@@ -1,0 +1,33 @@
+mutation CreateTodo($Text: String!, $UserID: String!) {
+    createTodo(input: { text: $Text, userId: $UserID }) {
+        user {
+            id
+        }
+        text
+        done
+    }
+}
+
+mutation DeleteTodo($ID: ID!) {
+    deleteTodo(id: $ID) {
+        user {
+            id
+        }
+        text
+        done
+    }
+}
+
+query FindTodo($ID: ID!) {
+    todo(id: $ID) {
+        text
+        done
+        user {
+            name
+        }
+    }
+}
+
+query FindTodos {
+    todos
+}

@@ -1,0 +1,7 @@
+schema: schemas/graphql/schema.graphqls
+operations:
+- schemas/graphql/client/genqlient.graphql
+generated: generated/graphql/client/todo.go
+bindings:
+  Map:
+    type: map[string]interface{}
