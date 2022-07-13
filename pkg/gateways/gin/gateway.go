@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"web-service/errors"
+	"web-service/generated/rest/types"
 	"web-service/pkg/entities"
 )
 
@@ -46,8 +47,6 @@ func (g *gateway) FetchTodos(ctx context.Context) (todos *entities.Todos, err er
 	if err != nil {
 		return nil, err
 	}
-	// fmt.Printf("length: %d \n", len(todos.Todos))
-	// fmt.Printf("%s \n", todos.Todos["1"].Text)
 
 	return todos, nil
 }
@@ -75,11 +74,6 @@ func (g *gateway) FetchTodo(ctx context.Context, id string) (todo *entities.Todo
 	if err != nil {
 		return nil, err
 	}
-	/*
-		if todo != nil {
-			fmt.Printf("%s \n", todo.Text)
-		}
-	*/
 
 	return todo, nil
 }
@@ -107,30 +101,16 @@ func (g *gateway) DeleteTodo(ctx context.Context, id string) (todo *entities.Tod
 	if err != nil {
 		return nil, err
 	}
-	/*
-		if todo != nil {
-			fmt.Printf("%s \n", todo.Text)
-		}
-	*/
 
 	return todo, nil
 }
 
-func (g *gateway) CreateTodo(ctx context.Context, newTodo *entities.TodoInput) (createdTodo *entities.Todo, err error) {
-	todo := &entities.Todo{
-		ID:   "5",
-		Text: newTodo.Text(),
-		User: &entities.User{
-			ID:   newTodo.UserID(),
-			Name: "user " + newTodo.UserID(),
-		},
-	}
+func (g *gateway) CreateTodo(ctx context.Context, newTodo *types.NewTodo) (createdTodo *entities.Todo, err error) {
 	var buf bytes.Buffer
-	err = json.NewEncoder(&buf).Encode(todo)
+	err = json.NewEncoder(&buf).Encode(newTodo)
 	if err != nil {
 		return nil, err
 	}
-	// fmt.Printf("%s", buf.String())
 	request, err := http.NewRequestWithContext(ctx, http.MethodPost, fmt.Sprintf("%s/todos", g.baseURL), &buf)
 	if err != nil {
 		return nil, err
@@ -153,11 +133,6 @@ func (g *gateway) CreateTodo(ctx context.Context, newTodo *entities.TodoInput) (
 	if err != nil {
 		return nil, err
 	}
-	/*
-		if createdTodo != nil {
-			fmt.Printf("%s \n", createdTodo.Text)
-		}
-	*/
 
 	return createdTodo, nil
 }

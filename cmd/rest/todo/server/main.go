@@ -1,72 +1,32 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
-	"strconv"
-	"web-service/pkg/entities"
+	generatedServer "web-service/generated/rest/server"
+	"web-service/pkg/interfaces/rest/todo/v1/server"
 
+	middleware "github.com/deepmap/oapi-codegen/pkg/gin-middleware"
 	"github.com/gin-gonic/gin"
 )
 
-var (
-	todos = entities.NewTodos()
-	/*
-		todos = entities.Todos{
-			Todos: map[string]*entities.Todo{
-				"1": {ID: "1", Text: "Todo 1", Done: false, User: &entities.User{ID: "1", Name: "Jotaro"}},
-				"2": {ID: "2", Text: "Todo 2", Done: false, User: &entities.User{ID: "2", Name: "Joseph"}},
-				"3": {ID: "3", Text: "Todo 3", Done: false, User: &entities.User{ID: "3", Name: "Avdol"}},
-			},
-		}
-	*/
-)
-
 func main() {
+	todoServer := server.NewTodoServer()
+	swagger, err := generatedServer.GetSwagger()
+	if err != nil {
+		fmt.Printf("%s", err.Error())
+		return
+	}
+	swagger.Servers = nil
 	router := gin.Default()
-	router.GET("/todos", getTodos)
-	router.GET("/todos/:id", getTodoByID)
-	router.POST("/todos", postTodos)
-	router.DELETE("/todos/:id", deleteTodos)
-
-	err := router.Run("localhost:8080")
+	router.Use(middleware.OapiRequestValidator(swagger))
+	router = generatedServer.RegisterHandlers(router, todoServer)
+	httpServer := &http.Server{
+		Handler: router,
+		Addr:    fmt.Sprintf("localhost:%d", 8080),
+	}
+	err = httpServer.ListenAndServe()
 	if err != nil {
 		return
 	}
-}
-
-func getTodos(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, todos)
-}
-
-func getTodoByID(c *gin.Context) {
-	id := c.Param("id")
-	todoWithID, ok := todos.Todos[id]
-	if !ok {
-		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "todo not found"})
-		return
-	}
-
-	c.IndentedJSON(http.StatusOK, todoWithID)
-}
-
-func postTodos(c *gin.Context) {
-	var newTodo entities.Todo
-
-	if err := c.BindJSON(&newTodo); err != nil {
-		return
-	}
-	newTodo.ID = strconv.Itoa(todos.NewID())
-	todos.Todos[newTodo.ID] = &newTodo
-	c.IndentedJSON(http.StatusCreated, newTodo)
-}
-
-func deleteTodos(c *gin.Context) {
-	id := c.Param("id")
-	todoWithID, ok := todos.Todos[id]
-	if !ok {
-		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "todo not found"})
-		return
-	}
-	delete(todos.Todos, id)
-	c.IndentedJSON(http.StatusOK, todoWithID)
 }

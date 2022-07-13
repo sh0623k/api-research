@@ -1,0 +1,5 @@
+package: api
+generate:
+  gin-server: true
+  embedded-spec: true
+output: generated/rest/server/todo.gen.go

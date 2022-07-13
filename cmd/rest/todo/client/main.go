@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"time"
-	"web-service/pkg/entities"
+	"web-service/generated/rest/types"
 	"web-service/pkg/gateways/gin"
 )
 
@@ -17,7 +17,7 @@ func main() {
 	begin := time.Now()
 	intSlice := make([]int, count)
 	for index := range intSlice {
-		_, err := gateway.CreateTodo(ctx, entities.NewTodoInput("test", strconv.Itoa(index)))
+		_, err := gateway.CreateTodo(ctx, &types.NewTodo{Text: "test", UserID: strconv.Itoa(index)})
 		if err != nil {
 			fmt.Printf("%s", err.Error())
 			return
@@ -28,7 +28,7 @@ func main() {
 
 	begin = time.Now()
 	for index := range intSlice {
-		_, err := gateway.FetchTodo(ctx, strconv.Itoa(index))
+		_, err := gateway.FetchTodo(ctx, strconv.Itoa(index+1))
 		if err != nil {
 			fmt.Printf("%s", err.Error())
 			return
@@ -38,17 +38,18 @@ func main() {
 	fmt.Printf("fetched all todos in %g seconds\n", endFindTime.Seconds())
 
 	begin = time.Now()
-	_, err := gateway.FetchTodos(ctx)
+	todos, err := gateway.FetchTodos(ctx)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
 		return
 	}
 	endFindTodosTime := time.Now().Sub(begin)
 	fmt.Printf("fetched todos slice in %g seconds\n", endFindTodosTime.Seconds())
+	fmt.Printf("len: %d \n", len(todos.Todos))
 
 	begin = time.Now()
 	for index := range intSlice {
-		_, err = gateway.DeleteTodo(ctx, strconv.Itoa(index))
+		_, err = gateway.DeleteTodo(ctx, strconv.Itoa(index+1))
 		if err != nil {
 			fmt.Printf("%s", err.Error())
 			return
