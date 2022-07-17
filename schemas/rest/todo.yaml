@@ -4,7 +4,7 @@ info:
   title: Todo Manager
   description: A sample API that uses a todo as an example to demonstrate features in the OpenAPI 3.0 specification
 servers:
-  - url: http://localhost:8080
+  - url: 0.0.0.0:3000
 paths:
   /todos:
     get:

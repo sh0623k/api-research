@@ -44,8 +44,8 @@ func main() {
 		return
 	}
 	endFindTodosTime := time.Now().Sub(begin)
-	fmt.Printf("fetched todos slice in %g seconds\n", endFindTodosTime.Seconds())
 	fmt.Printf("len: %d \n", len(todos.Todos))
+	fmt.Printf("fetched todos slice in %g seconds\n", endFindTodosTime.Seconds())
 
 	begin = time.Now()
 	for index := range intSlice {

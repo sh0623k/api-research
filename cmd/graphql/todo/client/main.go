@@ -24,7 +24,6 @@ func main() {
 			fmt.Printf("%s", err.Error())
 			return
 		}
-		// fmt.Printf("Created %v : %v\n", resp.CreateTodo.GetText(), resp.CreateTodo.GetUser())
 	}
 	endCreateTime := time.Now().Sub(begin)
 	fmt.Printf("created in %g seconds\n", endCreateTime.Seconds())
@@ -41,12 +40,13 @@ func main() {
 	fmt.Printf("fetched all todos in %g seconds\n", endFindTime.Seconds())
 
 	begin = time.Now()
-	_, err := client.FindTodos(ctx, graphqlClient)
+	todos, err := client.FindTodos(ctx, graphqlClient)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
 		return
 	}
 	endFindTodosTime := time.Now().Sub(begin)
+	fmt.Printf("len: %d \n", len(todos.Todos))
 	fmt.Printf("fetched todos slice in %g seconds\n", endFindTodosTime.Seconds())
 
 	begin = time.Now()

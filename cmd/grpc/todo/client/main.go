@@ -41,12 +41,12 @@ func main() {
 	fmt.Printf("fetched all todos in %g seconds\n", endFindTime.Seconds())
 
 	begin = time.Now()
-	_, err := gateway.FetchTodos(ctx, count)
+	todos, err := gateway.FetchTodos(ctx, count)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
 		return
 	}
-	// fmt.Printf("len: %d \n", len(todos))
+	fmt.Printf("len: %d \n", len(todos))
 	endFindTodosTime := time.Now().Sub(begin)
 	fmt.Printf("fetched todos slice in %g seconds\n", endFindTodosTime.Seconds())
 
