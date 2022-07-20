@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 	"io"
-	"web-service/generated/grpc/todo/v1"
+	todo "web-service/generated/grpc/todo/v1"
 	"web-service/pkg/entities"
 	converter "web-service/pkg/interfaces/grpc/todo/v1/converter/protobuf"
 

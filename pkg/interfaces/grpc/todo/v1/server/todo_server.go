@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"strconv"
-	"web-service/generated/grpc/todo/v1"
+	todo "web-service/generated/grpc/todo/v1"
 	"web-service/pkg/entities"
 	"web-service/pkg/interfaces/grpc/todo/v1/converter/entity"
 

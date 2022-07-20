@@ -1,11 +1,15 @@
-PATH_OF_REST_SCHEMA = schemas/rest
-PATH_OF_REST_GENERATED_CODE = generated/rest
+PATH_OF_GRPC_GENERATED_CODE = ./generated/grpc
+PATH_OF_REST_SCHEMA = ./schemas/rest
+PATH_OF_REST_GENERATED_CODE = ./generated/rest
 
 .PHONY: grpc-go-code
 grpc-go-code:
+	rm -rf ${PATH_OF_GRPC_GENERATED_CODE}
+	mkdir ${PATH_OF_GRPC_GENERATED_CODE}
 	protoc \
  		./schemas/grpc/todo/v1/todo.proto \
-		--go_out=./generated/grpc/todo/v1
+		--go_out=${PATH_OF_GRPC_GENERATED_CODE} \
+		--go-grpc_out=${PATH_OF_GRPC_GENERATED_CODE}
 
 .PHONY: server-graphql-go-code
 server-graphql-go-code:
