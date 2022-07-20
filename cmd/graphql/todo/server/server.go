@@ -1,11 +1,11 @@
 package main
 
 import (
+	graphql "api-research/generated/graphql/server"
+	"api-research/pkg/interfaces/graphql/resolvers"
 	"log"
 	"net/http"
 	"os"
-	graphql "web-service/generated/graphql/server"
-	"web-service/pkg/interfaces/graphql/resolvers"
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"

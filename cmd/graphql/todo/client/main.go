@@ -1,12 +1,12 @@
 package main
 
 import (
+	"api-research/generated/graphql/client"
 	"context"
 	"fmt"
 	"net/http"
 	"strconv"
 	"time"
-	"web-service/generated/graphql/client"
 
 	"github.com/Khan/genqlient/graphql"
 )

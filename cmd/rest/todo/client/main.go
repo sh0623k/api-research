@@ -1,12 +1,12 @@
 package main
 
 import (
+	"api-research/generated/rest/types"
+	"api-research/pkg/gateways/gin"
 	"context"
 	"fmt"
 	"strconv"
 	"time"
-	"web-service/generated/rest/types"
-	"web-service/pkg/gateways/gin"
 )
 
 const count = 1000

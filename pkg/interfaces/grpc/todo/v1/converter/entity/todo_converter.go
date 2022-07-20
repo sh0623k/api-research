@@ -1,8 +1,8 @@
 package entity
 
 import (
-	protobuf "web-service/generated/grpc/todo/v1"
-	"web-service/pkg/entities"
+	protobuf "api-research/generated/grpc/todo/v1"
+	"api-research/pkg/entities"
 )
 
 func ConvertToProtobufTodo(todoEntity *entities.Todo) *protobuf.Todo {

@@ -1,15 +1,15 @@
 package gin
 
 import (
+	"api-research/errors"
+	"api-research/generated/rest/types"
+	"api-research/pkg/entities"
 	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
-	"web-service/errors"
-	"web-service/generated/rest/types"
-	"web-service/pkg/entities"
 )
 
 type gateway struct {

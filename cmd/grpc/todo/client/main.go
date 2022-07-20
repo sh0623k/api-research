@@ -1,12 +1,12 @@
 package main
 
 import (
+	"api-research/pkg/entities"
+	"api-research/pkg/gateways/grpc"
 	"context"
 	"fmt"
 	"strconv"
 	"time"
-	"web-service/pkg/entities"
-	"web-service/pkg/gateways/grpc"
 )
 
 const count = 1000

@@ -4,9 +4,9 @@ package resolvers
 // will be copied through when generating and any unknown code will be moved to the end.
 
 import (
+	"api-research/generated/graphql/model"
+	"api-research/generated/graphql/server"
 	"context"
-	"web-service/generated/graphql/model"
-	"web-service/generated/graphql/server"
 )
 
 type mutationResolver struct{ *Resolver }

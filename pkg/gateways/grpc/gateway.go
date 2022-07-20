@@ -1,11 +1,11 @@
 package grpc
 
 import (
+	todo "api-research/generated/grpc/todo/v1"
+	"api-research/pkg/entities"
+	converter "api-research/pkg/interfaces/grpc/todo/v1/converter/protobuf"
 	"context"
 	"io"
-	todo "web-service/generated/grpc/todo/v1"
-	"web-service/pkg/entities"
-	converter "web-service/pkg/interfaces/grpc/todo/v1/converter/protobuf"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

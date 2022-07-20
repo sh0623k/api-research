@@ -1,11 +1,11 @@
 package main
 
 import (
+	protobuf "api-research/generated/grpc/todo/v1"
+	"api-research/pkg/interfaces/grpc/todo/v1/server"
 	"fmt"
 	"log"
 	"net"
-	protobuf "web-service/generated/grpc/todo/v1"
-	"web-service/pkg/interfaces/grpc/todo/v1/server"
 
 	"google.golang.org/grpc"
 )

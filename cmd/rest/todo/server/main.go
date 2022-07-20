@@ -1,12 +1,12 @@
 package main
 
 import (
+	generatedServer "api-research/generated/rest/server"
+	"api-research/pkg/interfaces/rest/todo/v1/server"
 	"fmt"
 	"log"
 	"net/http"
 	"strconv"
-	generatedServer "web-service/generated/rest/server"
-	"web-service/pkg/interfaces/rest/todo/v1/server"
 
 	middleware "github.com/deepmap/oapi-codegen/pkg/gin-middleware"
 	"github.com/gin-gonic/gin"

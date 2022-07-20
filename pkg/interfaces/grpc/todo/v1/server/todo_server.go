@@ -1,12 +1,12 @@
 package server
 
 import (
+	todo "api-research/generated/grpc/todo/v1"
+	"api-research/pkg/entities"
+	"api-research/pkg/interfaces/grpc/todo/v1/converter/entity"
 	"context"
 	"errors"
 	"strconv"
-	todo "web-service/generated/grpc/todo/v1"
-	"web-service/pkg/entities"
-	"web-service/pkg/interfaces/grpc/todo/v1/converter/entity"
 
 	"google.golang.org/grpc"
 )

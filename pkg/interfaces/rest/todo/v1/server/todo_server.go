@@ -1,11 +1,11 @@
 package server
 
 import (
+	"api-research/generated/rest/types"
+	"api-research/pkg/entities"
 	"fmt"
 	"net/http"
 	"strconv"
-	"web-service/generated/rest/types"
-	"web-service/pkg/entities"
 
 	"github.com/gin-gonic/gin"
 )

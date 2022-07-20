@@ -1,4 +1,4 @@
-module web-service
+module api-research
 
 go 1.18
 
