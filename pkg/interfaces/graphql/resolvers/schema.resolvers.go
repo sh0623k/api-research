@@ -9,9 +9,6 @@ import (
 	"context"
 )
 
-type mutationResolver struct{ *Resolver }
-type queryResolver struct{ *Resolver }
-
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
 	id := r.todoID.newID()
 	todo := &model.Todo{
@@ -49,3 +46,6 @@ func (r *Resolver) Mutation() server.MutationResolver { return &mutationResolver
 
 // Query returns server.QueryResolver implementation.
 func (r *Resolver) Query() server.QueryResolver { return &queryResolver{r} }
+
+type mutationResolver struct{ *Resolver }
+type queryResolver struct{ *Resolver }
