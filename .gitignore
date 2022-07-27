@@ -35,3 +35,6 @@ go.work
 .idea
 
 /generated/
+
+# Python cache file
+__pycache__
