@@ -45,7 +45,11 @@ func (s *TodoServer) CreateTodo(
 
 func (s *TodoServer) FetchTodos(
 	request *todo.FetchTodosRequest, server todo.TodoManager_FetchTodosServer) error {
-	intSlice := make([]int, request.FetchCount)
+	fetchCount := int(request.FetchCount)
+	if fetchCount == 0 {
+		fetchCount = len(s.todos.Todos)
+	}
+	intSlice := make([]int, fetchCount)
 	for index := range intSlice {
 		todoEntity, ok := s.todos.Todos[strconv.Itoa(index+1)]
 		if !ok {

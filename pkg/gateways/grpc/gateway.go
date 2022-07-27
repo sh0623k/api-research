@@ -43,9 +43,9 @@ func (g *Gateway) CreateTodo(ctx context.Context, todoInput *entities.TodoInput)
 	}, nil
 }
 
-func (g *Gateway) FetchTodos(ctx context.Context, fetchCount int) ([]*entities.Todo, error) {
+func (g *Gateway) FetchTodos(ctx context.Context) ([]*entities.Todo, error) {
 	todoSlice := make([]*entities.Todo, 0)
-	request := &todo.FetchTodosRequest{FetchCount: int32(fetchCount)}
+	request := &todo.FetchTodosRequest{FetchCount: int32(0)}
 	responseStream, err := g.client.FetchTodos(ctx, request)
 	if err != nil {
 		return nil, err
