@@ -1,8 +1,8 @@
 package main
 
 import (
-	generatedServer "api-research/generated/rest/server"
-	"api-research/pkg/interfaces/rest/todo/v1/server"
+	generatedServer "api-research/generated/openapi/server"
+	"api-research/pkg/interfaces/openapi/todo/v1/server"
 	"fmt"
 	"log"
 	"net/http"

@@ -2,7 +2,7 @@ package main
 
 import (
 	"api-research/generated/graphql/client"
-	"api-research/generated/rest/types"
+	"api-research/generated/openapi/types"
 	"api-research/pkg/entities"
 	"api-research/pkg/gateways/gin"
 	"api-research/pkg/gateways/grpc"
@@ -61,10 +61,10 @@ func main() {
 			return
 		}
 	}
-	restTodos, err := ginGateway.FetchTodos(ctx)
+	oapiTodos, err := ginGateway.FetchTodos(ctx)
 	if err != nil {
 		fmt.Printf("%s", err.Error())
 		return
 	}
-	fmt.Printf("len: %d \n", len(restTodos.Todos))
+	fmt.Printf("len: %d \n", len(oapiTodos.Todos))
 }

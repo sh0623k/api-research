@@ -2,7 +2,7 @@ package gin
 
 import (
 	"api-research/errors"
-	"api-research/generated/rest/types"
+	"api-research/generated/openapi/types"
 	"api-research/pkg/entities"
 	"bytes"
 	"context"

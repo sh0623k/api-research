@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Research GraphQL, gRPC, and REST.
+Research GraphQL, gRPC, and OpenAPI.
 
 ## Development
 
@@ -58,8 +58,8 @@ Perform gRPC load testing.
 make run-locust-to-grpc
 ```
 
-Perform REST load testing.
+Perform OpenAPI load testing.
 
 ```shell
-make run-locust-to-rest
+make run-locust-to-openapi
 ```

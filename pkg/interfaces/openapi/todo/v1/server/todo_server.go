@@ -1,7 +1,7 @@
 package server
 
 import (
-	"api-research/generated/rest/types"
+	"api-research/generated/openapi/types"
 	"api-research/pkg/entities"
 	"fmt"
 	"net/http"

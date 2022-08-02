@@ -1,7 +1,7 @@
 package main
 
 import (
-	"api-research/generated/rest/types"
+	"api-research/generated/openapi/types"
 	"api-research/pkg/gateways/gin"
 	"context"
 	"fmt"

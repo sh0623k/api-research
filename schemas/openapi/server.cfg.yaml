@@ -2,4 +2,4 @@ package: api
 generate:
   gin-server: true
   embedded-spec: true
-output: generated/rest/server/todo.gen.go
+output: generated/openapi/server/todo.gen.go

@@ -1,4 +1,0 @@
-package: api
-generate:
-  models: true
-output: generated/rest/types/todo-types.gen.go

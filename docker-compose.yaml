@@ -8,11 +8,11 @@ services:
       target: grpc-server
     ports:
       - "50051:50051"
-  rest:
+  openapi:
     build:
       context: .
       args:
-        BUILD_TARGET_PATH: ./cmd/rest/todo/server/main.go
+        BUILD_TARGET_PATH: ./cmd/openapi/todo/server/main.go
       target: application
     environment:
       PORT: "3000"

@@ -1,8 +1,8 @@
 PATH_OF_GRPC_SCHEMA = ./schemas/grpc/todo/v1
 PATH_OF_GRPC_GENERATED_GO_CODE = ./generated/grpc
 PATH_OF_GRPC_GENERATED_PYTHON_CODE = ./generated/grpc/todo/v1
-PATH_OF_REST_SCHEMA = ./schemas/rest
-PATH_OF_REST_GENERATED_CODE = ./generated/rest
+PATH_OF_OPENAPI_SCHEMA = ./schemas/openapi
+PATH_OF_OPENAPI_GENERATED_CODE = ./generated/openapi
 
 .PHONY: grpc-code
 grpc-code:
@@ -29,17 +29,17 @@ client-graphql-go-code:
 .PHONY: graphql-go-code
 graphql-go-code: server-graphql-go-code client-graphql-go-code
 
-.PHONY: oapi-go-code
-oapi-go-code:
-	rm -rf ${PATH_OF_REST_GENERATED_CODE}
-	mkdir ${PATH_OF_REST_GENERATED_CODE}
-	mkdir ${PATH_OF_REST_GENERATED_CODE}/types
-	mkdir ${PATH_OF_REST_GENERATED_CODE}/server
-	oapi-codegen --config ${PATH_OF_REST_SCHEMA}/types.cfg.yaml --package types ${PATH_OF_REST_SCHEMA}/todo.yaml
-	oapi-codegen --config ${PATH_OF_REST_SCHEMA}/server.cfg.yaml --package server ${PATH_OF_REST_SCHEMA}/todo.yaml
+.PHONY: openapi-go-code
+openapi-go-code:
+	rm -rf ${PATH_OF_OPENAPI_GENERATED_CODE}
+	mkdir ${PATH_OF_OPENAPI_GENERATED_CODE}
+	mkdir ${PATH_OF_OPENAPI_GENERATED_CODE}/types
+	mkdir ${PATH_OF_OPENAPI_GENERATED_CODE}/server
+	oapi-codegen --config ${PATH_OF_OPENAPI_SCHEMA}/types.cfg.yaml --package types ${PATH_OF_OPENAPI_SCHEMA}/todo.yaml
+	oapi-codegen --config ${PATH_OF_OPENAPI_SCHEMA}/server.cfg.yaml --package server ${PATH_OF_OPENAPI_SCHEMA}/todo.yaml
 
 .PHONY: generated-code
-generated-code: grpc-code graphql-go-code oapi-go-code
+generated-code: grpc-code graphql-go-code openapi-go-code
 
 .PHONY: start-containers
 start-containers:
@@ -58,6 +58,6 @@ run-locust-to-graphql:
 run-locust-to-grpc:
 	cd locust/grpc; locust -H http://localhost:50051
 
-.PHONY: run-locust-to-rest
-run-locust-to-rest:
-	cd locust/rest; locust -H http://localhost:3000
+.PHONY: run-locust-to-openapi
+run-locust-to-openapi:
+	cd locust/openapi; locust -H http://localhost:3000
