@@ -7,9 +7,11 @@ class Fetcher(HttpUser):
         query = '''
         query{
             todo(id: 1) {
+                id
                 text
                 done
                 user {
+                    id
                     name
                 }
             }
